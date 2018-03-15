@@ -21,7 +21,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *   | ~L5  | ~L2  | Caps | LAlt | LGui |                                       |  Lft |  Up  |  Dn  | Rght | ~L6  |
      *   `----------------------------------'                                       `----------------------------------'
      *                                        ,-------------.       ,-------------.
-     *                                        | +L2  | Home |       | PgUp | Del  |
+     *                                        | +L2  |  L0  |       | PgUp | Del  |
      *                                 ,------|------|------|       |------+------+------.
      *                                 |      |      |  End |       | PgDn |      |      |
      *                                 | BkSp |  ESC |------|       |------| Enter| Space|
@@ -100,56 +100,30 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // Layer0: default, leftled:none
         // left hand
         GRV, FN31,FN29,   3,   4,   5,   BSLS,
-        FN11,   Q,   W,   E,   R,   T,   FN18,
+        FN11,   Q,   W,   E,   R,   T,   F12,
         FN13,   A,   S,   D,   F,   G,
         FN12,   Z,   X,   C,   V,   B,   HOME,
-        F12,   F9,F3,APP,LGUI,
+        RCTL,   F9,F3,APP,LGUI,
                                       F4, FN17,
                                            FN24,
                                  FN5, FN6, FN7,
         // right hand
              MINS,6,   7,   8,   9,   0,   EQL,
-             FN23,Y,   U,   I,   O,   P,   QUOT,
+             FN20,Y,   U,   I,   O,   P,   QUOT,
                   H,   J,   K,   L,   SCLN,FN15,
              END, N,   M,   COMM,DOT, SLSH,FN16,
-                       LEFT,DOWN,UP,RGHT,RGUI,
+                       LEFT,DOWN,UP,RGHT,FN20,
         PGDN,PGUP,
         FN8,
         FN14, FN9, SPC
     ),
 
-
-    KEYMAP(  // Layer1: Dvorak
-           // left hand
-
-        TRNS, TRNS,TRNS,TRNS,TRNS,TRNS,  TRNS,  
-        TRNS,QUOT,COMM, DOT,   P,   Y,   TRNS,  
-        TRNS,   A,   O,   E,   U,   I,          
-        TRNS,SCLN,   Q,   J,   K,   X,   TRNS,  
-        TRNS,TRNS,TRNS,TRNS,TRNS,               
-                                      TRNS,TRNS,
-                                           TRNS,
-                                 TRNS, TRNS, TRNS, 
-        // right hand                           
-             TRNS,   TRNS,TRNS,TRNS, TRNS, TRNS,TRNS, 
-             TRNS,   F,   G,   C,   R,   L,TRNS,
-                     D,   H,   T,   N,   S,TRNS,
-             TRNS,   B,   M,   W,   V,   Z,TRNS,
-                       TRNS,TRNS,TRNS,TRNS,TRNS,  
-        TRNS ,TRNS,                               
-        TRNS,                                   
-        TRNS, TRNS, TRNS                          
-             ),
-
-
-
-    
-    KEYMAP(  // Layer2: numpad, leftled:mid/blue
+    KEYMAP(  // Layer1: numpad, leftled:mid/blue
         // left hand
-        TRNS,TRNS,  NO,  NO,  NO,PAUS,PSCR,
-        TRNS,  NO,  NO,  NO,  NO,  NO,TRNS,
-        TRNS,  NO,  NO,  NO,  NO,  NO,
-        TRNS,  NO,  NO,  NO,  NO,  NO,TRNS,
+           TRNS,TRNS,  NO,  NO,  NO,PAUS,PSCR, // 6
+           TRNS,  NO,  NO,  NO,  NO,  NO,TRNS, // 13
+           TRNS,  NO,  NO,  NO,  NO,  NO,         // 19
+           TRNS,  NO,  NO,  NO,  NO,  NO,TRNS, // 26
         TRNS,TRNS,TRNS,TRNS,TRNS,
                                       TRNS,TRNS,
                                            TRNS,
@@ -165,7 +139,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,TRNS,TRNS
     ),
 
-    KEYMAP(  // Layer3: F-keys only, leftled:top/white
+    KEYMAP(  // Layer2: F-keys only, leftled:top/white
         // left hand
          FN0, NO,  TRNS,  NO,  NO,  NO,  NO,
         TRNS, F1, F2, F3, F4,  NO,  NO,
@@ -177,7 +151,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  TRNS,TRNS,TRNS,
         // right hand
              NO,  NO,  NO,  NO,  NO,  NO,  TRNS,
-             NO,  NO, F13, F14, F15, F16,  TRNS,
+             TRNS,NO, F13, F14, F15, F16,  TRNS,
                   NO, F17, F18, F19, F20,  TRNS,
              TRNS,NO, F21, F22, F23, F24,  TRNS,
                        TRNS,TRNS,TRNS,TRNS,TRNS,
@@ -186,7 +160,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         SLEP,TRNS,TRNS
     ),
 
-    KEYMAP(  // Layer4 mouse and navigation, leftled:mid/blue+bot/green
+    KEYMAP(  // Layer3 mouse and navigation, leftled:mid/blue+bot/green
         // left hand
         TRNS, MPLY,MPRV,MNXT,VOLD,VOLU,MUTE,
         TRNS, WH_L,WH_D,WH_U,WH_R,HOME,PGUP,
@@ -284,7 +258,7 @@ const uint16_t PROGMEM fn_actions[] = {
     [11] =  ACTION_MODS_TAP_KEY(MOD_LSFT, KC_TAB),          // FN11 = LShift with tap Tab
     [12] =  ACTION_MODS_TAP_KEY(MOD_LCTL, KC_GRV),          // FN12 = LCtrl  with tap Tilda
     [13] =  ACTION_MODS_TAP_KEY(MOD_LALT, KC_SPC),          // FN13 = LAlt   with tap Space
-    [14] =  ACTION_MODS_TAP_KEY(MOD_LGUI, KC_ESC),          // FN14 = LGui   with tap Escape
+    [14] =  ACTION_MODS_TAP_KEY(MOD_RGUI, KC_ESC),          // FN14 = RGui   with tap Escape
     [15] =  ACTION_MODS_TAP_KEY(MOD_RSFT, KC_LBRC),         // FN15 = RShift with tap quotes
     [16] =  ACTION_MODS_TAP_KEY(MOD_RCTL, KC_RBRC),         // FN16 = RCtrl  with tap ]
 
@@ -292,23 +266,23 @@ const uint16_t PROGMEM fn_actions[] = {
     [18] =  ACTION_LAYER_SET(1, ON_BOTH),                   // FN18 - set Layer1,
     [19] =  ACTION_LAYER_SET(3, ON_BOTH),                   // FN19 - set Layer3, to use with Numpad keys
 
-
-    [20] =  ACTION_LAYER_MOMENTARY(6),            // FN20 - F keys
+    [20] =  ACTION_LAYER_TAP_KEY(2, KC_BSLS),
+    //    [20] =  ACTION_LAYER_MOMENTARY(2),                      // FN20 - F keys
     [22] =  ACTION_FUNCTION_TAP(R_CTRL_ALT_ENT),            // FN22 - momentary Layer4+CTRL+ALT on Enter, to use with F* keys
 
     [28] =  ACTION_LAYER_TAP_KEY(3, KC_3),                  // FN28 = momentary Layer5 on 3 key, to use with unconvenient keys
-    [29] =  ACTION_LAYER_TAP_KEY(3, KC_2),                  // FN29 = momentary Layer4 on 2 key, to use with F* keys
+    [29] =  ACTION_LAYER_TAP_KEY(2, KC_2),                  // FN29 = momentary Layer4 on 2 key, to use with F* keys
     [30] =  ACTION_LAYER_TAP_KEY(3, KC_F9),                      // FN30 = momentary Layer3, to use with mouse and navigation keys
-    [31] =  ACTION_LAYER_TAP_KEY(2, KC_1),                  // FN31 = momentary Layer3 on 1 key, to use with Numpad keys
+    [31] =  ACTION_LAYER_TAP_KEY(1, KC_1),                  // FN31 = momentary Layer3 on 1 key, to use with Numpad keys
 
     // i'd like to remove this - will try to get used to live without this and convert them to usual keys
-    [21] =  ACTION_LAYER_MOMENTARY(8),                      // FN20 - momentary Layer2, to use with Numpad keys
+    [21] =  ACTION_LAYER_MOMENTARY(1),                      // FN20 - momentary Layer1, to use with Numpad keys
 // or
 //  [20] =  ACTION_FUNCTION_TAP(CUSTOM_KEY),                // FN20 - use custom key, with tapping support
 
-    [23] =  ACTION_LAYER_TAP_KEY(4, KC_BSLS),               // FN23 - momentary Layer4 on ' , to use with F* keys (F1-F24)
+    [23] =  ACTION_LAYER_MOMENTARY(2),                      // FN23 - momentary Layer4 on ' , to use with F* keys (F1-F24)
     // TODO -- fix these to make sense.
-    [24] =  ACTION_LAYER_TAP_KEY(4, KC_F4),                  // FN24 = momentary Layer4 on 4 key, to use with F* keys
+    [24] =  ACTION_LAYER_TAP_KEY(3, KC_F4),                  // FN24 = momentary Layer4 on 4 key, to use with F* keys
     [25] =  ACTION_LAYER_TAP_KEY(5, KC_5),                  // FN25 = momentary Layer5 on 5 key, to use with F* keys
     [26] =  ACTION_LAYER_TAP_KEY(6, KC_C),                  // FN26 = momentary Layer6 on C key, to use with mouse and navigation keys 
     [27] =  ACTION_LAYER_TAP_KEY(2, KC_ENT),                  // FN26 = momentary Layer8 on C key, to use with mouse and navigation keys
@@ -332,10 +306,6 @@ static const uint16_t PROGMEM fn_actions_3[] = {
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
 	
-    // print("action_function called\n");
-    // print("id  = "); phex(id); print("\n");
-    // print("opt = "); phex(opt); print("\n");
-
     if (id == TEENSY_KEY) {
         clear_keyboard();
         print("\n\nJump to bootloader... ");
